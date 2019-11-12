@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="http_server_proxy"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;CMake Files\..\;CMake Files\..\..\;CMake Files\..\..\..\;CMake Files\..\..\..\..\;CMake Files\..\..\..\..\..\;CMake Files\..\..\..\..\..\usr\;CMake Files\..\..\..\..\..\usr\local\;CMake Files\..\..\..\..\..\usr\local\opt\;CMake Files\..\..\..\..\..\usr\local\opt\qt\;CMake Files\..\..\..\..\..\usr\local\opt\qt\lib\;CMake Files\..\..\..\..\..\usr\local\opt\qt\lib\cmake\;CMake Files\..\..\..\..\..\usr\local\opt\qt\lib\cmake\Qt5Widgets\;CMake Files\..\..\..\..\..\usr\local\opt\qt\lib\cmake\Qt5Gui\;CMake Files\..\..\..\..\..\usr\local\opt\qt\lib\cmake\Qt5Core\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/Users/rodrigodmpa/CLionProjects/http_server_proxy/projeto/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/rodrigodmpa/CLionProjects/http_server_proxy/projeto/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/rodrigodmpa/CLionProjects/http_server_proxy/projeto/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/rodrigodmpa/CLionProjects/http_server_proxy/projeto/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/rodrigodmpa/CLionProjects/http_server_proxy/projeto/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/Users/rodrigodmpa/CLionProjects/http_server_proxy/projeto/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/rodrigodmpa/CLionProjects/http_server_proxy/projeto/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/rodrigodmpa/CLionProjects/http_server_proxy/projeto/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/rodrigodmpa/CLionProjects/http_server_proxy/projeto/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/rodrigodmpa/CLionProjects/http_server_proxy/projeto/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/Users/rodrigodmpa/CLionProjects/http_server_proxy/projeto/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/rodrigodmpa/CLionProjects/http_server_proxy/projeto/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/rodrigodmpa/CLionProjects/http_server_proxy/projeto/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/rodrigodmpa/CLionProjects/http_server_proxy/projeto/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/rodrigodmpa/CLionProjects/http_server_proxy/projeto/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="http_server_proxy">
+				<Option output="/Users/rodrigodmpa/CLionProjects/http_server_proxy/projeto/cmake-build-debug/http_server_proxy" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/rodrigodmpa/CLionProjects/http_server_proxy/projeto/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DQT_WIDGETS_LIB"/>
+					<Add option="-DQT_GUI_LIB"/>
+					<Add option="-DQT_CORE_LIB"/>
+					<Add directory="/usr/local/opt/qt/lib/QtWidgets.framework"/>
+					<Add directory="/usr/local/opt/qt/lib/QtWidgets.framework/Headers"/>
+					<Add directory="/usr/local/opt/qt/lib/QtGui.framework"/>
+					<Add directory="/usr/local/opt/qt/lib/QtGui.framework/Headers"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/OpenGL.framework/Headers"/>
+					<Add directory="/usr/local/opt/qt/lib/QtCore.framework"/>
+					<Add directory="/usr/local/opt/qt/lib/QtCore.framework/Headers"/>
+					<Add directory="/usr/local/opt/qt/./mkspecs/macx-clang"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/11.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/rodrigodmpa/CLionProjects/http_server_proxy/projeto/cmake-build-debug/Makefile&quot;  VERBOSE=1 http_server_proxy"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/rodrigodmpa/CLionProjects/http_server_proxy/projeto/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/rodrigodmpa/CLionProjects/http_server_proxy/projeto/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/rodrigodmpa/CLionProjects/http_server_proxy/projeto/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="http_server_proxy/fast">
+				<Option output="/Users/rodrigodmpa/CLionProjects/http_server_proxy/projeto/cmake-build-debug/http_server_proxy" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/rodrigodmpa/CLionProjects/http_server_proxy/projeto/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DQT_WIDGETS_LIB"/>
+					<Add option="-DQT_GUI_LIB"/>
+					<Add option="-DQT_CORE_LIB"/>
+					<Add directory="/usr/local/opt/qt/lib/QtWidgets.framework"/>
+					<Add directory="/usr/local/opt/qt/lib/QtWidgets.framework/Headers"/>
+					<Add directory="/usr/local/opt/qt/lib/QtGui.framework"/>
+					<Add directory="/usr/local/opt/qt/lib/QtGui.framework/Headers"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/OpenGL.framework/Headers"/>
+					<Add directory="/usr/local/opt/qt/lib/QtCore.framework"/>
+					<Add directory="/usr/local/opt/qt/lib/QtCore.framework/Headers"/>
+					<Add directory="/usr/local/opt/qt/./mkspecs/macx-clang"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/11.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/rodrigodmpa/CLionProjects/http_server_proxy/projeto/cmake-build-debug/Makefile&quot;  VERBOSE=1 http_server_proxy/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/rodrigodmpa/CLionProjects/http_server_proxy/projeto/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/rodrigodmpa/CLionProjects/http_server_proxy/projeto/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/rodrigodmpa/CLionProjects/http_server_proxy/projeto/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/Users/rodrigodmpa/CLionProjects/http_server_proxy/projeto/main.cpp">
+			<Option target="http_server_proxy"/>
+		</Unit>
+		<Unit filename="/Users/rodrigodmpa/CLionProjects/http_server_proxy/projeto/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+		<Unit filename="/Users/rodrigodmpa/CLionProjects/http_server_proxy/projeto/../../../../../usr/local/opt/qt/lib/cmake/Qt5Widgets/Qt5WidgetsConfig.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\usr\local\opt\qt\lib\cmake\Qt5Widgets\"/>
+		</Unit>
+		<Unit filename="/Users/rodrigodmpa/CLionProjects/http_server_proxy/projeto/../../../../../usr/local/opt/qt/lib/cmake/Qt5Widgets/Qt5WidgetsConfigExtras.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\usr\local\opt\qt\lib\cmake\Qt5Widgets\"/>
+		</Unit>
+		<Unit filename="/Users/rodrigodmpa/CLionProjects/http_server_proxy/projeto/../../../../../usr/local/opt/qt/lib/cmake/Qt5Widgets/Qt5WidgetsConfigVersion.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\usr\local\opt\qt\lib\cmake\Qt5Widgets\"/>
+		</Unit>
+		<Unit filename="/Users/rodrigodmpa/CLionProjects/http_server_proxy/projeto/../../../../../usr/local/opt/qt/lib/cmake/Qt5Widgets/Qt5WidgetsMacros.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\usr\local\opt\qt\lib\cmake\Qt5Widgets\"/>
+		</Unit>
+		<Unit filename="/Users/rodrigodmpa/CLionProjects/http_server_proxy/projeto/../../../../../usr/local/opt/qt/lib/cmake/Qt5Widgets/Qt5Widgets_QMacStylePlugin.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\usr\local\opt\qt\lib\cmake\Qt5Widgets\"/>
+		</Unit>
+		<Unit filename="/Users/rodrigodmpa/CLionProjects/http_server_proxy/projeto/../../../../../usr/local/opt/qt/lib/cmake/Qt5Gui/Qt5GuiConfig.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\usr\local\opt\qt\lib\cmake\Qt5Gui\"/>
+		</Unit>
+		<Unit filename="/Users/rodrigodmpa/CLionProjects/http_server_proxy/projeto/../../../../../usr/local/opt/qt/lib/cmake/Qt5Gui/Qt5GuiConfigExtras.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\usr\local\opt\qt\lib\cmake\Qt5Gui\"/>
+		</Unit>
+		<Unit filename="/Users/rodrigodmpa/CLionProjects/http_server_proxy/projeto/../../../../../usr/local/opt/qt/lib/cmake/Qt5Gui/Qt5GuiConfigVersion.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\usr\local\opt\qt\lib\cmake\Qt5Gui\"/>
+		</Unit>
+		<Unit filename="/Users/rodrigodmpa/CLionProjects/http_server_proxy/projeto/../../../../../usr/local/opt/qt/lib/cmake/Qt5Gui/Qt5Gui_QCocoaIntegrationPlugin.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\usr\local\opt\qt\lib\cmake\Qt5Gui\"/>
+		</Unit>
+		<Unit filename="/Users/rodrigodmpa/CLionProjects/http_server_proxy/projeto/../../../../../usr/local/opt/qt/lib/cmake/Qt5Gui/Qt5Gui_QGifPlugin.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\usr\local\opt\qt\lib\cmake\Qt5Gui\"/>
+		</Unit>
+		<Unit filename="/Users/rodrigodmpa/CLionProjects/http_server_proxy/projeto/../../../../../usr/local/opt/qt/lib/cmake/Qt5Gui/Qt5Gui_QICNSPlugin.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\usr\local\opt\qt\lib\cmake\Qt5Gui\"/>
+		</Unit>
+		<Unit filename="/Users/rodrigodmpa/CLionProjects/http_server_proxy/projeto/../../../../../usr/local/opt/qt/lib/cmake/Qt5Gui/Qt5Gui_QICOPlugin.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\usr\local\opt\qt\lib\cmake\Qt5Gui\"/>
+		</Unit>
+		<Unit filename="/Users/rodrigodmpa/CLionProjects/http_server_proxy/projeto/../../../../../usr/local/opt/qt/lib/cmake/Qt5Gui/Qt5Gui_QJpegPlugin.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\usr\local\opt\qt\lib\cmake\Qt5Gui\"/>
+		</Unit>
+		<Unit filename="/Users/rodrigodmpa/CLionProjects/http_server_proxy/projeto/../../../../../usr/local/opt/qt/lib/cmake/Qt5Gui/Qt5Gui_QMacHeifPlugin.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\usr\local\opt\qt\lib\cmake\Qt5Gui\"/>
+		</Unit>
+		<Unit filename="/Users/rodrigodmpa/CLionProjects/http_server_proxy/projeto/../../../../../usr/local/opt/qt/lib/cmake/Qt5Gui/Qt5Gui_QMacJp2Plugin.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\usr\local\opt\qt\lib\cmake\Qt5Gui\"/>
+		</Unit>
+		<Unit filename="/Users/rodrigodmpa/CLionProjects/http_server_proxy/projeto/../../../../../usr/local/opt/qt/lib/cmake/Qt5Gui/Qt5Gui_QMinimalIntegrationPlugin.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\usr\local\opt\qt\lib\cmake\Qt5Gui\"/>
+		</Unit>
+		<Unit filename="/Users/rodrigodmpa/CLionProjects/http_server_proxy/projeto/../../../../../usr/local/opt/qt/lib/cmake/Qt5Gui/Qt5Gui_QOffscreenIntegrationPlugin.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\usr\local\opt\qt\lib\cmake\Qt5Gui\"/>
+		</Unit>
+		<Unit filename="/Users/rodrigodmpa/CLionProjects/http_server_proxy/projeto/../../../../../usr/local/opt/qt/lib/cmake/Qt5Gui/Qt5Gui_QTgaPlugin.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\usr\local\opt\qt\lib\cmake\Qt5Gui\"/>
+		</Unit>
+		<Unit filename="/Users/rodrigodmpa/CLionProjects/http_server_proxy/projeto/../../../../../usr/local/opt/qt/lib/cmake/Qt5Gui/Qt5Gui_QTiffPlugin.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\usr\local\opt\qt\lib\cmake\Qt5Gui\"/>
+		</Unit>
+		<Unit filename="/Users/rodrigodmpa/CLionProjects/http_server_proxy/projeto/../../../../../usr/local/opt/qt/lib/cmake/Qt5Gui/Qt5Gui_QTuioTouchPlugin.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\usr\local\opt\qt\lib\cmake\Qt5Gui\"/>
+		</Unit>
+		<Unit filename="/Users/rodrigodmpa/CLionProjects/http_server_proxy/projeto/../../../../../usr/local/opt/qt/lib/cmake/Qt5Gui/Qt5Gui_QVirtualKeyboardPlugin.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\usr\local\opt\qt\lib\cmake\Qt5Gui\"/>
+		</Unit>
+		<Unit filename="/Users/rodrigodmpa/CLionProjects/http_server_proxy/projeto/../../../../../usr/local/opt/qt/lib/cmake/Qt5Gui/Qt5Gui_QWbmpPlugin.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\usr\local\opt\qt\lib\cmake\Qt5Gui\"/>
+		</Unit>
+		<Unit filename="/Users/rodrigodmpa/CLionProjects/http_server_proxy/projeto/../../../../../usr/local/opt/qt/lib/cmake/Qt5Gui/Qt5Gui_QWebGLIntegrationPlugin.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\usr\local\opt\qt\lib\cmake\Qt5Gui\"/>
+		</Unit>
+		<Unit filename="/Users/rodrigodmpa/CLionProjects/http_server_proxy/projeto/../../../../../usr/local/opt/qt/lib/cmake/Qt5Gui/Qt5Gui_QWebpPlugin.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\usr\local\opt\qt\lib\cmake\Qt5Gui\"/>
+		</Unit>
+		<Unit filename="/Users/rodrigodmpa/CLionProjects/http_server_proxy/projeto/../../../../../usr/local/opt/qt/lib/cmake/Qt5Gui/Qt5Gui_QXdgDesktopPortalThemePlugin.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\usr\local\opt\qt\lib\cmake\Qt5Gui\"/>
+		</Unit>
+		<Unit filename="/Users/rodrigodmpa/CLionProjects/http_server_proxy/projeto/../../../../../usr/local/opt/qt/lib/cmake/Qt5Core/Qt5CoreConfig.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\usr\local\opt\qt\lib\cmake\Qt5Core\"/>
+		</Unit>
+		<Unit filename="/Users/rodrigodmpa/CLionProjects/http_server_proxy/projeto/../../../../../usr/local/opt/qt/lib/cmake/Qt5Core/Qt5CoreConfigExtras.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\usr\local\opt\qt\lib\cmake\Qt5Core\"/>
+		</Unit>
+		<Unit filename="/Users/rodrigodmpa/CLionProjects/http_server_proxy/projeto/../../../../../usr/local/opt/qt/lib/cmake/Qt5Core/Qt5CoreConfigExtrasMkspecDir.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\usr\local\opt\qt\lib\cmake\Qt5Core\"/>
+		</Unit>
+		<Unit filename="/Users/rodrigodmpa/CLionProjects/http_server_proxy/projeto/../../../../../usr/local/opt/qt/lib/cmake/Qt5Core/Qt5CoreConfigVersion.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\usr\local\opt\qt\lib\cmake\Qt5Core\"/>
+		</Unit>
+		<Unit filename="/Users/rodrigodmpa/CLionProjects/http_server_proxy/projeto/../../../../../usr/local/opt/qt/lib/cmake/Qt5Core/Qt5CoreMacros.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\usr\local\opt\qt\lib\cmake\Qt5Core\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>
