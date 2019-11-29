@@ -5,6 +5,7 @@
 #include <stdlib.h>
 #include <netinet/in.h>
 #include <string.h>
+#include "Client.h"
 
 #define PORT 8080
 int main(int argc, char const *argv[])
@@ -52,9 +53,11 @@ int main(int argc, char const *argv[])
         char buffer[30000] = {0};
         valread = read( new_socket , buffer, 30000);
         printf("%s\n",buffer );
-        
+
         write(new_socket , hello , strlen(hello));
         printf("------------------Hello message sent-------------------\n");
+        Client myObj;     // Create an object of MyClass
+        myObj.myMethod();
         close(new_socket);
     }
 
