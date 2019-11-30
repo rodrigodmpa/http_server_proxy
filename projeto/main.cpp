@@ -6,13 +6,19 @@
 #include <netinet/in.h>
 #include <string.h>
 #include "Client.h"
+#include <vector>
 
 #define PORT 8080
+
+#define BUFFER_SIZE 1024
+
 int main(int argc, char const *argv[])
 {
+    int fd, fd2;
     int server_fd, new_socket; long valread;
     struct sockaddr_in address;
     int addrlen = sizeof(address);
+    Client client;
 
     char *hello = "HTTP/1.1 200 OK\nContent-Type: text/plain\nContent-Length: 12\n\nHello world!";
 
@@ -53,13 +59,56 @@ int main(int argc, char const *argv[])
         char buffer[30000] = {0};
         valread = read( new_socket , buffer, 30000);
         printf("%s\n",buffer );
+        std::string str(buffer);
 
-        write(new_socket , hello , strlen(hello));
-        printf("------------------Hello message sent-------------------\n");
-        Client myObj;     // Create an object of MyClass
-        myObj.myMethod();
+        std::size_t getIndex = str.find("GET");
+        std::size_t httpIndex = str.find("HTTP");
+
+        std::string url = str.substr(getIndex + 11, httpIndex - 13);
+
+        int n = url.length();
+        char char_array[n + 1];
+        strcpy(char_array, url.c_str());
+
+        std::cout << url << std::endl;
+
+        fd2 = client.socket_connect(char_array, 80);
+        char* response = client.result(fd2);
+        std::cout << "RESPOSTA PRO RAFA VER" << response << std::endl;
+        write(new_socket , response , strlen(response));
+
+
+        shutdown(fd2, SHUT_RDWR);
+        close(fd);
         close(new_socket);
     }
+
+    return 0;
+//    int fd;
+//    char buffer[BUFFER_SIZE];
+//    vector
+
+//    if(argc < 3){
+//        fprintf(stderr, "Usage: %s <hostname> <port>\n", argv[0]);
+//        exit(1);
+//    }
+
+//    Client client;     // Create an object of MyClass
+//    fd = client.socket_connect("www.google.com", 80);
+//    client.result(fd);
+//    write(fd, "GET /\r\n", strlen("GET /\r\n")); // write(fd, char[]*, len);
+//    bzero(buffer, BUFFER_SIZE);
+//    int i = 0;
+//
+//
+//    while(read(fd, buffer, BUFFER_SIZE - 1) != 0){
+//        fprintf(stderr, "%s", buffer);
+//        bzero(buffer, BUFFER_SIZE);
+//        i++;
+//    }
+
+    shutdown(fd, SHUT_RDWR);
+    close(fd);
 
     return 0;
 }
