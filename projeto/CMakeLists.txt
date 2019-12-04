@@ -4,5 +4,5 @@ project(http_server_proxy)
 set(CMAKE_CXX_STANDARD 17)
 find_package(Qt5Widgets REQUIRED)
 
-add_executable(http_server_proxy main.cpp Client.cpp Client.h)
+add_executable(http_server_proxy main.cpp Client.cpp Client.h SocketClass.cpp SocketClass)
 target_link_libraries(http_server_proxy Qt5::Widgets)
