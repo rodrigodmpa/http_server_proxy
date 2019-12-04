@@ -73,9 +73,13 @@ int main(int argc, char const *argv[])
         std::cout << url << std::endl;
 
         fd2 = client.socket_connect(char_array, 80);
-        char* response = client.result(fd2);
-        std::cout << "RESPOSTA PRO RAFA VER" << response << std::endl;
-        write(new_socket , response , strlen(response));
+        std::vector<unsigned char> response = client.result(fd2);
+        unsigned char buff[response.size()];
+        for(size_t i = 0; i < response.size(); ++i){
+            buff[i] = response[i];
+        }
+        std::cout<< buff << std::endl;
+        write(new_socket , buff , int(response.size()));
 
 
         shutdown(fd2, SHUT_RDWR);

@@ -90,29 +90,21 @@ int Client::socket_connect(char *host, in_port_t port){
     return sock;
 }
 
-char* Client::result(int fd) {
-    char buffer[1024];
-    std::string response;
+std::vector <unsigned char> Client::result(int fd) {
+    unsigned char buffer;
+    std::vector <unsigned char> response;
     write(fd, "GET /\r\n", strlen("GET /\r\n")); // write(fd, char[]*, len);
-    bzero(buffer, BUFFER_SIZE);
     int i = 0;
 
 
-    while(read(fd, buffer, BUFFER_SIZE - 1) != 0){
+    while(read(fd, &buffer, 1) > 0){
 //        fprintf(stderr, "%s", buffer);
-        response = response + buffer;
-        bzero(buffer, BUFFER_SIZE);
+        response.push_back(buffer);
         i++;
 
     }
 
-    int n = response.length();
-    char char_array[n + 1];
-    strcpy(char_array, response.c_str());
-
-    std::cout << char_array << std::endl;
-
 //    shutdown(fd, SHUT_RDWR);
 
-    return char_array;
+    return response;
 }
