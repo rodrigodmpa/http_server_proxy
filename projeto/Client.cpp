@@ -102,8 +102,6 @@ std::vector <unsigned char> Client::result(int fd, std::string request) {
         response.push_back(buffer);
         i++;
     }
-
-    response.push_back('\0');
 //    shutdown(fd, SHUT_RDWR);
 
     return response;

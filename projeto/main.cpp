@@ -6,6 +6,7 @@
 #include <netinet/in.h>
 #include <string.h>
 #include "Client.h"
+#include "Utils.h"
 #include <vector>
 
 #define PORT 8080
@@ -19,6 +20,7 @@ int main(int argc, char const *argv[])
     struct sockaddr_in address;
     int addrlen = sizeof(address);
     Client client;
+    Utils utils;
 
     char *hello = "HTTP/1.1 200 OK\nContent-Type: text/plain\nContent-Length: 12\n\nHello world!";
 
@@ -61,10 +63,9 @@ int main(int argc, char const *argv[])
         printf("%s\n",buffer);
         std::string str(buffer);
 
-        std::size_t getIndex = str.find("GET");
-        std::size_t httpIndex = str.find("HTTP");
+        std::string url = utils.getUrl(str);
 
-        std::string url = str.substr(getIndex + 11, httpIndex - 13);
+
 
         int n = url.length();
         char char_array[n + 1];
@@ -83,10 +84,10 @@ int main(int argc, char const *argv[])
         write(new_socket , buff , int(response.size()));
 
 
-        shutdown(fd2, SHUT_RDWR);
-        close(fd);
-        close(new_socket);
+
     }
 
+    shutdown(fd2, SHUT_RDWR);
+    close(new_socket);
     return 0;
 }
