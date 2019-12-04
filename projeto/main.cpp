@@ -57,8 +57,8 @@ int main(int argc, char const *argv[])
         }
 
         char buffer[30000] = {0};
-        valread = read( new_socket , buffer, 30000);
-        printf("%s\n",buffer );
+        valread = read(new_socket , buffer, 30000);
+        printf("%s\n",buffer);
         std::string str(buffer);
 
         std::size_t getIndex = str.find("GET");
@@ -73,12 +73,13 @@ int main(int argc, char const *argv[])
         std::cout << url << std::endl;
 
         fd2 = client.socket_connect(char_array, 80);
-        std::vector<unsigned char> response = client.result(fd2);
+        std::vector<unsigned char> response = client.result(fd2, str);
         unsigned char buff[response.size()];
         for(size_t i = 0; i < response.size(); ++i){
             buff[i] = response[i];
         }
-        std::cout<< buff << std::endl;
+
+        std::cout << buff << std::endl;
         write(new_socket , buff , int(response.size()));
 
 
@@ -86,33 +87,6 @@ int main(int argc, char const *argv[])
         close(fd);
         close(new_socket);
     }
-
-    return 0;
-//    int fd;
-//    char buffer[BUFFER_SIZE];
-//    vector
-
-//    if(argc < 3){
-//        fprintf(stderr, "Usage: %s <hostname> <port>\n", argv[0]);
-//        exit(1);
-//    }
-
-//    Client client;     // Create an object of MyClass
-//    fd = client.socket_connect("www.google.com", 80);
-//    client.result(fd);
-//    write(fd, "GET /\r\n", strlen("GET /\r\n")); // write(fd, char[]*, len);
-//    bzero(buffer, BUFFER_SIZE);
-//    int i = 0;
-//
-//
-//    while(read(fd, buffer, BUFFER_SIZE - 1) != 0){
-//        fprintf(stderr, "%s", buffer);
-//        bzero(buffer, BUFFER_SIZE);
-//        i++;
-//    }
-
-    shutdown(fd, SHUT_RDWR);
-    close(fd);
 
     return 0;
 }

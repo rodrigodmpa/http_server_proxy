@@ -90,10 +90,10 @@ int Client::socket_connect(char *host, in_port_t port){
     return sock;
 }
 
-std::vector <unsigned char> Client::result(int fd) {
+std::vector <unsigned char> Client::result(int fd, std::string request) {
     unsigned char buffer;
     std::vector <unsigned char> response;
-    write(fd, "GET /\r\n", strlen("GET /\r\n")); // write(fd, char[]*, len);
+    write(fd, request.c_str(), request.length()); // write(fd, char[]*, len);
     int i = 0;
 
 
@@ -101,9 +101,9 @@ std::vector <unsigned char> Client::result(int fd) {
 //        fprintf(stderr, "%s", buffer);
         response.push_back(buffer);
         i++;
-
     }
 
+    response.push_back('\0');
 //    shutdown(fd, SHUT_RDWR);
 
     return response;
