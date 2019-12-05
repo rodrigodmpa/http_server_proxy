@@ -2,7 +2,7 @@
 // Created by Rodrigo Demetrio Palma on 04/12/19.
 //
 
-#include "library.h"
+#include "header/library.h"
 using namespace std;
 
 int dump(set<string> requests, string baseURL) {
