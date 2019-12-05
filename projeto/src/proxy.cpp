@@ -10,24 +10,24 @@ int proxy(int PORTNUM) {
     struct sockaddr_in *dest; /* socket info about the machine connecting to us */
     char rmsg[MAXRCVLEN];
     socklen_t socksize = sizeof(struct sockaddr_in);
-    cout << "Criando Socket...";
+    cout << "INFO: Criando Socket...";
     int ourSocket = createNewSocket(PORTNUM, 1);
 
     if ((dest = (struct sockaddr_in*)malloc(sizeof(struct sockaddr_in))) == NULL) {
-        cout << "Erro de alocacao. Abortando\n";
+        cout << "ERRO: Erro de alocacao. Abortando\n";
         freeMemory();
         exit(0);
     }
     cout << " Criado!" << endl;
     fml.dest = dest;
-    cout << "Aguardando conexão..." << endl;
+    cout << "INFO: Aguardando conexão..." << endl;
     int consocket = accept(ourSocket, (struct sockaddr *)dest, &socksize);
     int len, i = 1000;
 
     while(--i)
     {
         if((len = read(consocket, rmsg, MAXRCVLEN)) <= 0){
-            cout << "Connection close by remote host or some error ocurred. Accepting new connections." << endl;
+            cout << "ERRO: Connection close by remote host or some error ocurred. Accepting new connections." << endl;
             close(consocket);
             consocket = accept(ourSocket, (struct sockaddr *)dest, &socksize);
             continue;
@@ -64,7 +64,7 @@ int createNewSocket (uint16_t portNum, uint16_t parallelConnections) {
     int sckt;            /* socket used to listen for incoming connections */
 
     if ((serv = (struct sockaddr_in*)malloc(sizeof(struct sockaddr_in))) == NULL) {
-        printf("Erro de alocacao. Abortando\n");
+        printf("ERRO: Erro de alocacao. Abortando\n");
         freeMemory();
         exit(0);
     }
@@ -79,7 +79,7 @@ int createNewSocket (uint16_t portNum, uint16_t parallelConnections) {
 
     /* bind serv information to mysocket */
     if(::bind(sckt, (struct sockaddr *)serv, sizeof(struct sockaddr)) == -1){
-        std::cerr << "Erro na criação do socket. Escolha outra porta." << std::endl;
+        std::cerr << "ERRO: Erro na criação do socket. Escolha outra porta." << std::endl;
         freeMemory();
         exit(1);
     }
@@ -101,7 +101,7 @@ vector <unsigned char> makeRequest(std::string msg_string) {
 
     string host_name = getHostValue(msg_string);
     if((hp = gethostbyname(host_name.c_str())) == NULL){
-        fprintf(stderr, "Can't get server's address\n");
+        fprintf(stderr, "ERRO: Can't get server's address\n");
         freeMemory();
         exit(1);
     }
@@ -114,11 +114,11 @@ vector <unsigned char> makeRequest(std::string msg_string) {
     dest.sin_port = htons(80);                        /* set destination port number */
 
     if(connect(someSocket, (struct sockaddr *)&dest, sizeof(struct sockaddr_in)) == -1){
-        printf("Nao foi possivel conectar %s\n", inet_ntoa(dest.sin_addr));
+        printf("ERRO: Nao foi possivel conectar %s\n", inet_ntoa(dest.sin_addr));
         freeMemory();
         exit(1);
     }
-    printf("Conectado no host: %s\n", inet_ntoa(dest.sin_addr));
+    printf("INFO: Conectado no host: %s\n", inet_ntoa(dest.sin_addr));
     write(someSocket, msg_string.c_str(), msg_string.length());
 
     while((len = read(someSocket, &buff, 1)) > 0){

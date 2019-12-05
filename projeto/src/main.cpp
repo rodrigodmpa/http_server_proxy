@@ -17,10 +17,10 @@ int main(int argc, char* argv[]){
         {
             portnum = atoi(argv[2]);
             if(portnum == 0){
-                cout << "porta deve ser um inteiro." << endl;
+                cout << "ERRO: a porta deve ser um inteiro." << endl;
                 return 1;
             }
-            cout << "porta escolhida: " << portnum << endl;
+            cout << "INFO: porta escolhida: " << portnum << endl;
         }
         catch(const exception& e)
         {
@@ -34,7 +34,7 @@ int main(int argc, char* argv[]){
         return 1;
     }
     cout << "----------------\n";
-    cout << "(1) Proxy       |\n(2) Inspector   |\n(3) Spyder      |\n(4) Dump        |\n";
+    cout << "(1) Proxy       |\n(2) Inspector   |\n(3) Spider      |\n(4) Dump        |\n";
     cout << "----------------\n";
     cout << "\n Escolha uma opção: ";
     while(true){

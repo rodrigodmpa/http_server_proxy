@@ -15,30 +15,30 @@ int inspector(int PORTNUM) {
     char rmsg[MAXRCVLEN];
     socklen_t socksize = sizeof(struct sockaddr_in);
     FILE* fd;
-    cout << "Tentando criar socket..." << endl;
+    cout << "INFO: Tentando criar socket..." << endl;
     int ourSocket = createNewSocket(PORTNUM, 2);
 
     if ((dest = (struct sockaddr_in*)malloc(sizeof(struct sockaddr_in))) == NULL) {
-        cout << "Erro de alocacao. Abortando\n";
+        cout << "ERRO: Erro de alocacao. Abortando\n";
         freeMemory();
         exit(0);
     }
     fml.dest = dest;
-    cout << "Aguardando...";
+    cout << "INFO: Aguardando...";
     int consocket = accept(ourSocket, (struct sockaddr *)dest, &socksize);
     int len, i = 10;
 
     while(--i)
     {
         if((len = read(consocket, rmsg, MAXRCVLEN)) <= 0){
-            cout << "Connection close by remote host or some error ocurred. Accepting new connections." << endl;
+            cout << "ERRO: Connection close by remote host or some error ocurred. Accepting new connections." << endl;
             close(consocket);
             consocket = accept(ourSocket, (struct sockaddr *)dest, &socksize);
             continue;
         }
         rmsg[len] = '\0';
         if(strstr(rmsg, "POST") != NULL){
-            cout << "I am not accepting POST messages. Plese try again." << endl;
+            cout << "ERRO: I am not accepting POST messages. Plese try again." << endl;
             close(consocket);
             consocket = accept(ourSocket, (struct sockaddr *)dest, &socksize);
             continue;

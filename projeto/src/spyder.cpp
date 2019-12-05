@@ -36,6 +36,7 @@ void buildReference(set<string> & result, string response, string baseURL) {
         leng = string("href=\"").length();
         jump = 0;
         buff = response.substr(init_index + leng, response.find('\"', init_index + leng) - (init_index + leng));
+        cout << buff << endl;
         if((leng = buff.find('?')) != string::npos){
             buff = buff.substr(0, leng);
         }

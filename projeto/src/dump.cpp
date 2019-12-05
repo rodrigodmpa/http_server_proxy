@@ -52,13 +52,13 @@ int dump(set<string> requests, string baseURL) {
 
         if(!isReallyHTML(*itr, baseURL)) {
             system(systemCommand.c_str());
-            cout << "tryning to write to folder: " << foldername << endl;
+            cout << "INFO: tryning to write to folder: " << foldername << endl;
             file.open(filename, ofstream::binary);
             if(file.is_open()){
                 file << response_str;
                 file.close();
             } else {
-                cout << "Unable to open file. Proceed?" << endl;
+                cout << "ERRO: Unable to open file. Proceed?" << endl;
                 getchar();
             }
         } else {// procurar href, src e trocar as referencias
@@ -66,13 +66,13 @@ int dump(set<string> requests, string baseURL) {
             name = baseURL + "/" + name;
             fixRefs(response_str, mapRefs);//necessario arrumar as referencias
 
-            cout << "\n\tTryning to write to file: " << name << endl;
+            cout << "\n\tINFO: Tryning to write to file: " << name << endl;
             file.open(name, ofstream::binary);
             if(file.is_open()){
                 file << response_str;
                 file.close();
             } else {
-                cout << "Unable to open file. Proceed?" << endl;
+                cout << "ERRO: Unable to open file. Proceed?" << endl;
                 getchar();
             }
         }
