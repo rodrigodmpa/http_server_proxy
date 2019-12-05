@@ -8,11 +8,7 @@ using namespace std;
 
 
 set<string> spyder(string baseURL){
-    /**
-    Função principal do spyder.
-    @param baseURL: URL base do domínio desejado.
-    @return set<string>: Set com os nomes das referências encontradas.
-    */
+
 
     int levels;
     cout << " Quantos níveis deseja buscar? ";

@@ -38,6 +38,7 @@ std::vector<unsigned char> readBinaryFile(std::string);
 std::string readTextFile(std::string);
 bool writeFile(std::string, std::vector<unsigned char>);
 int inspector(int);
+int dump(std::set<std::string>, std::string);
 
 
 #endif //HTTP_SERVER_PROXY_LIBRARY_H
