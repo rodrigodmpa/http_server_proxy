@@ -106,11 +106,7 @@ void generateMap(map<string, string> &mapRefs, set<string> &requests, string bas
 }
 
 string cutHead(string serverRequest) {
-    /**
-      Função que corta o cabeçalho e retorna a stream de dados da resposta do servidor.
-      @param serverRequest: String que contém a resposta vinda do servidor.
-      @return string: Uma string com os dados.
-    */
+
     string withouthead;
     size_t len;
 
@@ -122,11 +118,7 @@ string cutHead(string serverRequest) {
 
 
 void fixRefs(string &serverResponse, map<string, string> &mapRefs) {
-    /**
-      Função que corrige as referências no HTML apontando para o local correto.
-      @param &serverResponse: Referência à uma string que contém a reposta do servidor (deve ser um HTML).
-      @param &mapRefs: Referência à um Map que contêm as referências corretas.
-    */
+
     string buff;
     size_t init_index = 0, leng, leng2;
     size_t end_index;
