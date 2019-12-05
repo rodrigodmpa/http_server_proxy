@@ -6,6 +6,125 @@
 #include "treeLibrary.h"
 using namespace std;
 
+
+set<string> spyder(string baseURL){
+    /**
+    Função principal do spyder.
+    @param baseURL: URL base do domínio desejado.
+    @return set<string>: Set com os nomes das referências encontradas.
+    */
+
+    int levels;
+    cout << " Quantos níveis deseja buscar? ";
+    cin >> levels;
+    cout << endl;
+
+    Tree arvore = generateTree(baseURL, levels);
+    arvore.printTree();
+
+    set<string> retr = arvore.treeToVector();
+    return retr;
+}
+
+
+void buildReference(set<string> & result, string response, string baseURL) {
+
+
+    string buff;
+    size_t init_index = 0;
+    size_t leng;
+    int jump;
+
+    vector<string> excludeRefs = {"https", "#", "//", "mailto", "();", "javascript"};
+    while ((init_index = response.find("href=\"", init_index)) != string::npos) {
+        leng = string("href=\"").length();
+        jump = 0;
+        buff = response.substr(init_index + leng, response.find('\"', init_index + leng) - (init_index + leng));
+        if((leng = buff.find('?')) != string::npos){
+            buff = buff.substr(0, leng);
+        }
+        if(buff.empty()) {
+            init_index += leng + 1;
+            continue;
+        }
+        for(string ref: excludeRefs){
+            if(buff.find(ref) != string::npos)
+            {
+                init_index += buff.length() + 1;
+                jump = 1;
+                break;
+            }
+        }
+        if(jump) continue;
+        if (buff.find("http") != string::npos && buff.find(baseURL) == string::npos)
+        {
+            init_index += buff.length() + 1;
+            continue;
+        }
+        init_index += buff.length() + 1;
+        result.emplace(buff);
+    }
+    init_index = 0;
+    while ((init_index = response.find("src=\"", init_index)) != string::npos) {
+        leng = string("src=\"").length();
+        jump = 0;
+        buff = response.substr(init_index + leng, response.find('\"', init_index + leng) - (init_index + leng));
+        if((leng = buff.find('?')) != string::npos){
+            buff = buff.substr(0, leng);
+        }
+        if(buff.empty()) {
+            init_index += leng + 1;
+            continue;
+        }
+        for(string ref: excludeRefs){
+            if(buff.find(ref) != string::npos)
+            {
+                init_index += buff.length() + 1;
+                jump = 1;
+                break;
+            }
+        }
+        if(jump) continue;
+        if (buff.find("http") != string::npos && buff.find(baseURL) == string::npos)
+        {
+            init_index += buff.length() + 1;
+            continue;
+        }
+        init_index += buff.length() + 1;
+        result.emplace(buff);
+    }
+    init_index = 0;
+    while ((init_index = response.find("url(\"", init_index)) != string::npos) {
+        leng = string("url(\"").length();
+        jump = 0;
+        buff = response.substr(init_index + leng, response.find('\"', init_index + leng) - (init_index + leng));
+        if((leng = buff.find('?')) != string::npos){
+            buff = buff.substr(0, leng);
+        }
+        if(buff.empty()) {
+            init_index += leng + 1;
+            continue;
+        }
+        for(string ref: excludeRefs){
+            if(buff.find(ref) != string::npos)
+            {
+                init_index += buff.length() + 1;
+                jump = 1;
+                break;
+            }
+        }
+        if(jump)continue;
+        if (buff.find("http") != string::npos && buff.find(baseURL) == string::npos)
+        {
+            init_index += buff.length() + 1;
+            continue;
+        }
+        init_index += buff.length() + 1;
+        result.emplace(buff);
+    }
+}
+
+
 bool isHTML(string url, string baseURL) {
 
 
