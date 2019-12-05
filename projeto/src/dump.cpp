@@ -170,7 +170,6 @@ void fixRefs(string &serverResponse, map<string, string> &mapRefs)
     {
         end_index = serverResponse.find('\"', init_index + leng);
         buff = serverResponse.substr(init_index + leng, end_index - (init_index + leng));
-        cout << "ESTE É O BUFF 1: " << buff << endl;
         if ((leng2 = buff.find('?')) != string::npos)
         {
             buff = buff.substr(0, leng2);
@@ -197,7 +196,7 @@ void fixRefs(string &serverResponse, map<string, string> &mapRefs)
     {
         end_index = serverResponse.find('\"', init_index + leng);
         buff = serverResponse.substr(init_index + leng, end_index - (init_index + leng));
-        cout << "ESTE É O BUFF 2: " << buff << endl;
+
         if ((leng2 = buff.find('?')) != string::npos)
         {
             buff = buff.substr(0, leng2);
@@ -225,7 +224,6 @@ void fixRefs(string &serverResponse, map<string, string> &mapRefs)
     {
         end_index = serverResponse.find('\"', init_index + leng);
         buff = serverResponse.substr(init_index + leng, end_index - (init_index + leng));
-        cout << "ESTE É O BUFF 3: " << buff << endl;
         if ((leng2 = buff.find('?')) != string::npos)
         {
             buff = buff.substr(0, leng2);
