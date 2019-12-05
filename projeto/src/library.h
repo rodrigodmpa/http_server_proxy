@@ -24,11 +24,17 @@
 #include <map>
 
 
+struct freeMemoryList {
+    struct sockaddr_in *dest;
+    struct sockaddr_in *serv;
+};
+
 int proxy(int);
 int createNewSocket(uint16_t, uint16_t);
 std::vector <unsigned char> makeRequest(std::string);
 std::string getHostValue(std::string);
 void freeMemory();
+std::vector<unsigned char> readBinaryFile(std::string);
 
 
 #endif //HTTP_SERVER_PROXY_LIBRARY_H

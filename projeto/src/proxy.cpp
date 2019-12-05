@@ -3,6 +3,7 @@
 //
 
 #include "library.h"
+using namespace std;
 
 #define MAXRCVLEN 2000
 
