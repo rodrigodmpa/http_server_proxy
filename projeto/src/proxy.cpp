@@ -34,7 +34,7 @@ int proxy(int PORTNUM) {
         }
         rmsg[len] = '\0';
         if(strstr(rmsg, "POST") != NULL){
-            cout << "I am not accepting POST messages. Plese try again" << endl;
+            cout << "ERRO: I am not accepting POST messages. Plese try again" << endl;
             close(consocket);
             consocket = accept(ourSocket, (struct sockaddr *)dest, &socksize);
             continue;
@@ -45,7 +45,7 @@ int proxy(int PORTNUM) {
             buff[i] = response[i];
         }
         write(consocket, buff, response.size());
-        cout << "Feito.\n";
+        cout << "INFO: Feito.\n";
     }
 
     close(consocket);
@@ -125,7 +125,7 @@ vector <unsigned char> makeRequest(std::string msg_string) {
         response.push_back(buff);
         bytes_read ++;
     }
-    printf("%d bytes de resposta recebidos\n", bytes_read);
+    printf("INFO: %d bytes de resposta recebidos\n", bytes_read);
     close(someSocket);
 
     return response;

@@ -5,73 +5,92 @@
 #include "header/library.h"
 using namespace std;
 
-void makeDump(string baseURL){
+void makeDump(string baseURL)
+{
 
-    set<string> inspectSet = spyder(baseURL);
+    set<string> inspectSet = spider(baseURL);
     dump(inspectSet, baseURL);
 }
 
-int dump(set<string> requests, string baseURL) {
-
+int dump(set<string> requests, string baseURL)
+{
 
     string request;
-    vector <unsigned char> serverResponse;
+    vector<unsigned char> serverResponse;
     string systemCommand;
     string filename;
     string foldername = "mkdir -p " + baseURL;
     ofstream file;
-    map <string, string> mapRefs;
+    map<string, string> mapRefs;
 
     system(foldername.c_str());
 
     generateMap(mapRefs, requests, baseURL);
 
-    for(set<string>::iterator itr = requests.begin(); itr != requests.end(); ++itr){
-        if((*itr)[0] != '/'){
+    for (set<string>::iterator itr = requests.begin(); itr != requests.end(); ++itr)
+    {
+        if ((*itr)[0] != '/')
+        {
             request = "GET /" + (*itr) + " HTTP/1.1\r\nHost: " + baseURL + "\r\nConnection: close\r\n\r\n";
-            if ((*itr).find_last_of('/') == string::npos){
+            if ((*itr).find_last_of('/') == string::npos)
+            {
                 foldername = baseURL + "/";
-            } else {
+            }
+            else
+            {
                 foldername = baseURL + "/" + (*itr).substr(0, (*itr).find_last_of('/'));
             }
             systemCommand = "mkdir -p " + foldername;
             filename = baseURL + string("/") + (*itr);
-        } else {
+        }
+        else
+        {
             request = "GET " + (*itr) + " HTTP/1.1\r\nHost: " + baseURL + "\r\nConnection: close\r\n\r\n";
             foldername = baseURL + (*itr).substr(0, (*itr).find_last_of('/'));
             systemCommand = "mkdir -p " + foldername;
             filename = baseURL + (*itr);
         }
-        cout << "Inside dump function\n" << request << "Proceed" <<endl;
+        cout << "Inside dump function\n"
+             << request << "Proceed" << endl;
         serverResponse = makeRequest(request);
         string response_str;
-        for(auto letter:serverResponse){
+        for (auto letter : serverResponse)
+        {
             response_str += letter;
         }
         response_str = cutHead(response_str);
 
-        if(!isReallyHTML(*itr, baseURL)) {
+        if (!isReallyHTML(*itr, baseURL))
+        {
             system(systemCommand.c_str());
             cout << "INFO: tryning to write to folder: " << foldername << endl;
             file.open(filename, ofstream::binary);
-            if(file.is_open()){
+            if (file.is_open())
+            {
                 file << response_str;
                 file.close();
-            } else {
+            }
+            else
+            {
                 cout << "ERRO: Unable to open file. Proceed?" << endl;
                 getchar();
             }
-        } else {// procurar href, src e trocar as referencias
+        }
+        else
+        { // procurar href, src e trocar as referencias
             string name = mapRefs[(*itr)];
             name = baseURL + "/" + name;
-            fixRefs(response_str, mapRefs);//necessario arrumar as referencias
+            fixRefs(response_str, mapRefs); //necessario arrumar as referencias
 
             cout << "\n\tINFO: Tryning to write to file: " << name << endl;
             file.open(name, ofstream::binary);
-            if(file.is_open()){
+            if (file.is_open())
+            {
                 file << response_str;
                 file.close();
-            } else {
+            }
+            else
+            {
                 cout << "ERRO: Unable to open file. Proceed?" << endl;
                 getchar();
             }
@@ -80,29 +99,44 @@ int dump(set<string> requests, string baseURL) {
     return EXIT_SUCCESS;
 }
 
-void generateMap(map<string, string> &mapRefs, set<string> &requests, string baseURL) {
+void generateMap(map<string, string> &mapRefs, set<string> &requests, string baseURL)
+{
 
-
-    for(set<string>::iterator i = requests.begin(); i != requests.end(); ++i){
-        if(!isReallyHTML(*i, baseURL)){//se nao for html mapeie dele para ele mesmo
-            if((*i).front() == '/'){
+    for (set<string>::iterator i = requests.begin(); i != requests.end(); ++i)
+    {
+        if (!isReallyHTML(*i, baseURL))
+        { //se nao for html mapeie dele para ele mesmo
+            if ((*i).front() == '/')
+            {
                 mapRefs[*i] = (*i).substr(1);
-            } else {
+            }
+            else
+            {
                 mapRefs[*i] = *i;
             }
         }
-        else if((*i).compare("") == 0){//eh uma referencia quebrada
+        else if ((*i).compare("") == 0)
+        { //eh uma referencia quebrada
             continue;
-        } else if((*i).compare("/") == 0){//eh a raiz "/" -> index.html
+        }
+        else if ((*i).compare("/") == 0)
+        { //eh a raiz "/" -> index.html
             mapRefs[*i] = "index.html";
-        } else if((*i).find("/") == string::npos) {//eh um html e nao possui / -> (nome.html)
+        }
+        else if ((*i).find("/") == string::npos)
+        { //eh um html e nao possui / -> (nome.html)
             mapRefs[*i] = (*i) + ".html";
-        } else if (((*i).find_last_of("/")) != string::npos) {//eh um html e possui /
+        }
+        else if (((*i).find_last_of("/")) != string::npos)
+        { //eh um html e possui /
             string buff = (*i);
-            if(buff.back() == '/') {//ultimo caractere eh uma "/" -> substituir por .html
+            if (buff.back() == '/')
+            { //ultimo caractere eh uma "/" -> substituir por .html
                 buff.back() = '.';
                 buff += "html";
-            } else {
+            }
+            else
+            {
                 buff += ".html";
             }
             buff = buff.substr(buff.find_last_of("/") + 1);
@@ -111,40 +145,47 @@ void generateMap(map<string, string> &mapRefs, set<string> &requests, string bas
     }
 }
 
-string cutHead(string serverRequest) {
+string cutHead(string serverRequest)
+{
 
     string withouthead;
     size_t len;
 
-    if((len = serverRequest.find("\r\n\r\n")) != string::npos) {
+    if ((len = serverRequest.find("\r\n\r\n")) != string::npos)
+    {
         withouthead = serverRequest.substr(serverRequest.find("\r\n\r\n") + 4);
     }
     return withouthead;
 }
 
-
-void fixRefs(string &serverResponse, map<string, string> &mapRefs) {
+void fixRefs(string &serverResponse, map<string, string> &mapRefs)
+{
 
     string buff;
     size_t init_index = 0, leng, leng2;
     size_t end_index;
 
-
     leng = string("href=\"").length();
-    while ((init_index = serverResponse.find("href=\"", init_index)) != string::npos) {
+    while ((init_index = serverResponse.find("href=\"", init_index)) != string::npos)
+    {
         end_index = serverResponse.find('\"', init_index + leng);
         buff = serverResponse.substr(init_index + leng, end_index - (init_index + leng));
-        if((leng2 = buff.find('?')) != string::npos){
+        cout << "ESTE É O BUFF 1: " << buff << endl;
+        if ((leng2 = buff.find('?')) != string::npos)
+        {
             buff = buff.substr(0, leng2);
         }
-        if(buff.length() >= 2){
-            if(buff[0] == '/' && buff[1] == '/') {
+        if (buff.length() >= 2)
+        {
+            if (buff[0] == '/' && buff[1] == '/')
+            {
                 buff = string("http:") + buff;
                 serverResponse.replace(init_index + leng, end_index - (init_index + leng), buff);
                 continue;
             }
         }
-        if(mapRefs.find(buff) != mapRefs.end()){
+        if (mapRefs.find(buff) != mapRefs.end())
+        {
             serverResponse.replace(init_index + leng, end_index - (init_index + leng), mapRefs[buff]);
         }
         init_index = end_index + 1;
@@ -152,20 +193,26 @@ void fixRefs(string &serverResponse, map<string, string> &mapRefs) {
     init_index = 0;
 
     leng = string("src=\"").length();
-    while ((init_index = serverResponse.find("src=\"", init_index)) != string::npos) {
+    while ((init_index = serverResponse.find("src=\"", init_index)) != string::npos)
+    {
         end_index = serverResponse.find('\"', init_index + leng);
         buff = serverResponse.substr(init_index + leng, end_index - (init_index + leng));
-        if((leng2 = buff.find('?')) != string::npos){
+        cout << "ESTE É O BUFF 2: " << buff << endl;
+        if ((leng2 = buff.find('?')) != string::npos)
+        {
             buff = buff.substr(0, leng2);
         }
-        if(buff.length() >= 2){
-            if(buff[0] == '/' && buff[1] == '/') {
+        if (buff.length() >= 2)
+        {
+            if (buff[0] == '/' && buff[1] == '/')
+            {
                 buff = string("http:") + buff;
                 serverResponse.replace(init_index + leng, end_index - (init_index + leng), buff);
                 continue;
             }
         }
-        if(mapRefs.find(buff) != mapRefs.end()){
+        if (mapRefs.find(buff) != mapRefs.end())
+        {
             serverResponse.replace(init_index + leng, end_index - (init_index + leng), mapRefs[buff]);
         }
         init_index = end_index + 1;
@@ -174,23 +221,28 @@ void fixRefs(string &serverResponse, map<string, string> &mapRefs) {
     init_index = 0;
 
     leng = string("url(\"").length();
-    while ((init_index = serverResponse.find("url(\"", init_index)) != string::npos) {
+    while ((init_index = serverResponse.find("url(\"", init_index)) != string::npos)
+    {
         end_index = serverResponse.find('\"', init_index + leng);
         buff = serverResponse.substr(init_index + leng, end_index - (init_index + leng));
-        if((leng2 = buff.find('?')) != string::npos){
+        cout << "ESTE É O BUFF 3: " << buff << endl;
+        if ((leng2 = buff.find('?')) != string::npos)
+        {
             buff = buff.substr(0, leng2);
         }
-        if(buff.length() >= 2){
-            if(buff[0] == '/' && buff[1] == '/') {
+        if (buff.length() >= 2)
+        {
+            if (buff[0] == '/' && buff[1] == '/')
+            {
                 buff = string("http:") + buff;
                 serverResponse.replace(init_index + leng, end_index - (init_index + leng), buff);
                 continue;
             }
         }
-        if(mapRefs.find(buff) != mapRefs.end()){
+        if (mapRefs.find(buff) != mapRefs.end())
+        {
             serverResponse.replace(init_index + leng, end_index - (init_index + leng), mapRefs[buff]);
         }
         init_index = end_index + 1;
     }
 }
-

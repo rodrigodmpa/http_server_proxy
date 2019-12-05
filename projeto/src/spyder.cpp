@@ -7,7 +7,7 @@
 using namespace std;
 
 
-set<string> spyder(string baseURL){
+set<string> spider(string baseURL){
 
 
     int levels;

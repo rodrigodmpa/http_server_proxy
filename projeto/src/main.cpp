@@ -58,7 +58,7 @@ int main(int argc, char* argv[]){
             inspector(portnum);
             break;
         case 3:
-            spyder(baseURL);
+            spider(baseURL);
             break;
         case 4:
             makeDump(baseURL);

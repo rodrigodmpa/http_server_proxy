@@ -6,7 +6,7 @@ ODIR = obj
 _DEPS = library.h
 DEPS = $(patsubst %,$(IDIR)/%,$(_DEPS))
 
-_OBJ = main.o proxy.o inspector.o spyder.o dump.o
+_OBJ = main.o proxy.o inspector.o spider.o dump.o
 OBJ = $(patsubst %,$(ODIR)/%,$(_OBJ))
 
 $(ODIR)/%.o: %.cpp $(DEPS)

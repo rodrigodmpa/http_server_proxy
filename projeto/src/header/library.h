@@ -38,7 +38,7 @@ std::vector<unsigned char> readBinaryFile(std::string);
 std::string readTextFile(std::string);
 bool writeFile(std::string, std::vector<unsigned char>);
 int inspector(int);
-std::set<std::string> spyder(std::string);
+std::set<std::string> spider(std::string);
 bool isReallyHTML(std::string, std::string);
 void makeDump(std::string);
 int dump(std::set<std::string>, std::string);
