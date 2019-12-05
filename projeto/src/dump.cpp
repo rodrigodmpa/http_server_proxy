@@ -104,3 +104,95 @@ void generateMap(map<string, string> &mapRefs, set<string> &requests, string bas
         }
     }
 }
+
+string cutHead(string serverRequest) {
+    /**
+      Função que corta o cabeçalho e retorna a stream de dados da resposta do servidor.
+      @param serverRequest: String que contém a resposta vinda do servidor.
+      @return string: Uma string com os dados.
+    */
+    string withouthead;
+    size_t len;
+
+    if((len = serverRequest.find("\r\n\r\n")) != string::npos) {
+        withouthead = serverRequest.substr(serverRequest.find("\r\n\r\n") + 4);
+    }
+    return withouthead;
+}
+
+
+void fixRefs(string &serverResponse, map<string, string> &mapRefs) {
+    /**
+      Função que corrige as referências no HTML apontando para o local correto.
+      @param &serverResponse: Referência à uma string que contém a reposta do servidor (deve ser um HTML).
+      @param &mapRefs: Referência à um Map que contêm as referências corretas.
+    */
+    string buff;
+    size_t init_index = 0, leng, leng2;
+    size_t end_index;
+
+
+    leng = string("href=\"").length();
+    while ((init_index = serverResponse.find("href=\"", init_index)) != string::npos) {
+        end_index = serverResponse.find('\"', init_index + leng);
+        buff = serverResponse.substr(init_index + leng, end_index - (init_index + leng));
+        if((leng2 = buff.find('?')) != string::npos){
+            buff = buff.substr(0, leng2);
+        }
+        if(buff.length() >= 2){
+            if(buff[0] == '/' && buff[1] == '/') {
+                buff = string("http:") + buff;
+                serverResponse.replace(init_index + leng, end_index - (init_index + leng), buff);
+                continue;
+            }
+        }
+        if(mapRefs.find(buff) != mapRefs.end()){
+            serverResponse.replace(init_index + leng, end_index - (init_index + leng), mapRefs[buff]);
+        }
+        init_index = end_index + 1;
+    }
+    init_index = 0;
+
+    leng = string("src=\"").length();
+    while ((init_index = serverResponse.find("src=\"", init_index)) != string::npos) {
+        end_index = serverResponse.find('\"', init_index + leng);
+        buff = serverResponse.substr(init_index + leng, end_index - (init_index + leng));
+        if((leng2 = buff.find('?')) != string::npos){
+            buff = buff.substr(0, leng2);
+        }
+        if(buff.length() >= 2){
+            if(buff[0] == '/' && buff[1] == '/') {
+                buff = string("http:") + buff;
+                serverResponse.replace(init_index + leng, end_index - (init_index + leng), buff);
+                continue;
+            }
+        }
+        if(mapRefs.find(buff) != mapRefs.end()){
+            serverResponse.replace(init_index + leng, end_index - (init_index + leng), mapRefs[buff]);
+        }
+        init_index = end_index + 1;
+    }
+
+    init_index = 0;
+
+    leng = string("url(\"").length();
+    while ((init_index = serverResponse.find("url(\"", init_index)) != string::npos) {
+        end_index = serverResponse.find('\"', init_index + leng);
+        buff = serverResponse.substr(init_index + leng, end_index - (init_index + leng));
+        if((leng2 = buff.find('?')) != string::npos){
+            buff = buff.substr(0, leng2);
+        }
+        if(buff.length() >= 2){
+            if(buff[0] == '/' && buff[1] == '/') {
+                buff = string("http:") + buff;
+                serverResponse.replace(init_index + leng, end_index - (init_index + leng), buff);
+                continue;
+            }
+        }
+        if(mapRefs.find(buff) != mapRefs.end()){
+            serverResponse.replace(init_index + leng, end_index - (init_index + leng), mapRefs[buff]);
+        }
+        init_index = end_index + 1;
+    }
+}
+
