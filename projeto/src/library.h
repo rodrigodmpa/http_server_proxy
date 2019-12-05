@@ -25,6 +25,8 @@
 
 
 int proxy(int);
+int createNewSocket(uint16_t, uint16_t);
+void freeMemory();
 
 
 #endif //HTTP_SERVER_PROXY_LIBRARY_H
