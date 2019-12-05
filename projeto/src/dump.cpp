@@ -5,6 +5,12 @@
 #include "header/library.h"
 using namespace std;
 
+void makeDump(string baseURL){
+
+    set<string> inspectSet = spyder(baseURL);
+    dump(inspectSet, baseURL);
+}
+
 int dump(set<string> requests, string baseURL) {
 
 
