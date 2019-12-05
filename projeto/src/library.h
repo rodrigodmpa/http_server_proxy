@@ -39,6 +39,7 @@ std::string readTextFile(std::string);
 bool writeFile(std::string, std::vector<unsigned char>);
 int inspector(int);
 int dump(std::set<std::string>, std::string);
+void generateMap(std::map<std::string, std::string>&, std::set<std::string>&, std::string);
 
 
 #endif //HTTP_SERVER_PROXY_LIBRARY_H

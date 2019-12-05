@@ -73,3 +73,34 @@ int dump(set<string> requests, string baseURL) {
     }
     return EXIT_SUCCESS;
 }
+
+void generateMap(map<string, string> &mapRefs, set<string> &requests, string baseURL) {
+
+
+    for(set<string>::iterator i = requests.begin(); i != requests.end(); ++i){
+        if(!isReallyHTML(*i, baseURL)){//se nao for html mapeie dele para ele mesmo
+            if((*i).front() == '/'){
+                mapRefs[*i] = (*i).substr(1);
+            } else {
+                mapRefs[*i] = *i;
+            }
+        }
+        else if((*i).compare("") == 0){//eh uma referencia quebrada
+            continue;
+        } else if((*i).compare("/") == 0){//eh a raiz "/" -> index.html
+            mapRefs[*i] = "index.html";
+        } else if((*i).find("/") == string::npos) {//eh um html e nao possui / -> (nome.html)
+            mapRefs[*i] = (*i) + ".html";
+        } else if (((*i).find_last_of("/")) != string::npos) {//eh um html e possui /
+            string buff = (*i);
+            if(buff.back() == '/') {//ultimo caractere eh uma "/" -> substituir por .html
+                buff.back() = '.';
+                buff += "html";
+            } else {
+                buff += ".html";
+            }
+            buff = buff.substr(buff.find_last_of("/") + 1);
+            mapRefs[*i] = buff;
+        }
+    }
+}
