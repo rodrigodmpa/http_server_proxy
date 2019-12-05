@@ -6,6 +6,40 @@
 #include "treeLibrary.h"
 using namespace std;
 
+bool isHTML(string url, string baseURL) {
+
+
+    vector<unsigned char> headResponse;
+    string head;
+
+    string headMsg = "HEAD " + (url) + " HTTP/1.1\r\nHost: " + baseURL + "\r\nConnection: close\r\n\r\n";
+    headResponse = makeRequest(headMsg);
+
+    string response_str;
+    for(auto letter:headResponse){
+        response_str += letter;
+    }
+
+    if(response_str.find("text/html") != string::npos && response_str.find("200 OK") != string::npos){
+        cout << "\n\tInside isHTML func " << url << " is html" << endl;
+        return true;
+    } else {
+        return false;
+    }
+}
+
+bool isReallyHTML(string url, string baseURL) {
+
+
+    if(mapHTML.find(url) != mapHTML.end()){
+        cout << "\nALREADY HAVE " << url << endl;
+        return mapHTML[url];
+    } else {
+        mapHTML[url] = isHTML(url, baseURL);
+        return mapHTML[url];
+    }
+}
+
 /* Return all sources of a sources's sons */
 set<string> searchChildren(string url, string baseURL){
 
@@ -113,20 +147,3 @@ Tree generateTree(string baseURL, int levels){
     return arvore;
 }
 
-bool isReallyHTML(string url, string baseURL) {
-    /**
-    <Verifica se o cabeçalho da url já foi inspecionado para retornar a informação
-    se a url é ou não um HTML.>
-    @param url: Url da referência.
-    @param baseURL: URL base do domínio desejado.
-    @return bool: Indica se é ou não HTML.
-    */
-
-    if(mapHTML.find(url) != mapHTML.end()){
-        cout << "\nALREADY HAVE " << url << endl;
-        return mapHTML[url];
-    } else {
-        mapHTML[url] = isHTML(url, baseURL);
-        return mapHTML[url];
-    }
-}
