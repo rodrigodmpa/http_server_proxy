@@ -16,6 +16,7 @@ class Client {
         int myMethod(char* header);
         int socket_connect(char *host, in_port_t port);
         std::vector<unsigned char> result(int fd, std::string request);
+        void proxy();
 };
 
 

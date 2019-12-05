@@ -10,24 +10,14 @@ std::string Utils::getUrl(std::string request) {
     std::string url;
 
     indexInicial = request.find("Host: ");
-    indexInicial += strlen("Host: ");
-    request.assign( request, indexInicial, std::string::npos );
-    indexFinal = request.find("\r\n");
-    url.assign( request, 0, indexFinal );
 
-//    int index = 0;
-//
-//    std::size_t httpIndex = request.find("HTTP");
-//
-//    std::string lastValue = "/";
-//
-//    if(request[httpIndex - 2] == lastValue[0]) {
-//        index++;
-//    }
-//
-//    std::string reduceUrl = request.substr(0, httpIndex - 1 - index);
-//
-//    std::string url = reduceUrl.substr(11, reduceUrl.size() - index);
+    indexInicial += strlen("Host: ");
+
+    request.assign( request, indexInicial, std::string::npos );
+
+    indexFinal = request.find("\r\n");
+
+    url.assign( request, 0, indexFinal );
 
     return url;
 }
