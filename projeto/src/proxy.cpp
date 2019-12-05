@@ -10,7 +10,7 @@ int proxy(int PORTNUM) {
     struct sockaddr_in *dest; /* socket info about the machine connecting to us */
     char rmsg[MAXRCVLEN];
     socklen_t socksize = sizeof(struct sockaddr_in);
-    cout << "Tentando criar socket..." << endl;
+    cout << "Criando Socket...";
     int ourSocket = createNewSocket(PORTNUM, 1);
 
     if ((dest = (struct sockaddr_in*)malloc(sizeof(struct sockaddr_in))) == NULL) {
@@ -18,8 +18,9 @@ int proxy(int PORTNUM) {
         freeMemory();
         exit(0);
     }
+    cout << " Criado!" << endl;
     fml.dest = dest;
-    cout << "Aguardando..." << endl;
+    cout << "Aguardando conexão..." << endl;
     int consocket = accept(ourSocket, (struct sockaddr *)dest, &socksize);
     int len, i = 1000;
 
@@ -44,7 +45,7 @@ int proxy(int PORTNUM) {
             buff[i] = response[i];
         }
         write(consocket, buff, response.size());
-        cout << "Done\n";
+        cout << "Feito.\n";
     }
 
     close(consocket);
@@ -113,18 +114,18 @@ vector <unsigned char> makeRequest(std::string msg_string) {
     dest.sin_port = htons(80);                        /* set destination port number */
 
     if(connect(someSocket, (struct sockaddr *)&dest, sizeof(struct sockaddr_in)) == -1){
-        printf("Can't connect %s\n", inet_ntoa(dest.sin_addr));
+        printf("Nao foi possivel conectar %s\n", inet_ntoa(dest.sin_addr));
         freeMemory();
         exit(1);
     }
-    printf("Connect on host: %s\n", inet_ntoa(dest.sin_addr));
+    printf("Conectado no host: %s\n", inet_ntoa(dest.sin_addr));
     write(someSocket, msg_string.c_str(), msg_string.length());
 
     while((len = read(someSocket, &buff, 1)) > 0){
         response.push_back(buff);
         bytes_read ++;
     }
-    printf("%d bytes of response received\n", bytes_read);
+    printf("%d bytes de resposta recebidos\n", bytes_read);
     close(someSocket);
 
     return response;
