@@ -17,10 +17,10 @@ int main(int argc, char* argv[]){
         {
             portnum = atoi(argv[2]);
             if(portnum == 0){
-                cout << "port must be an integer." << endl;
+                cout << "porta deve ser um inteiro." << endl;
                 return 1;
             }
-            cout << "port choosed: " << portnum << endl;
+            cout << "porta escolhida: " << portnum << endl;
         }
         catch(const exception& e)
         {
@@ -30,11 +30,13 @@ int main(int argc, char* argv[]){
     } else if (argc == 1) {
         portnum = 8228;
     } else {
-        cout << "Usage: aracne or aracne -p [portnum]" << endl;
+        cout << "Como usar: aracne or aracne -p [portnum]" << endl;
         return 1;
     }
-
-    cout << "(1) Proxy\n(2) Inspector\n(3) Spyder\n(4) Dump\n\n Escolha uma opção: ";
+    cout << "----------------\n";
+    cout << "(1) Proxy       |\n(2) Inspector   |\n(3) Spyder      |\n(4) Dump        |\n";
+    cout << "----------------\n";
+    cout << "\n Escolha uma opção: ";
     while(true){
         scanf("%d", &value);
         if(value== 1 || value == 2 || value == 3 || value == 4) break;
@@ -43,7 +45,7 @@ int main(int argc, char* argv[]){
     }
 
     if(value==3 || value ==4){
-        cout << " Forneca um dominio valido: ";
+        cout << " Forneca um dominio valido ex. www.ba.gov.br: ";
         cin >> baseURL;
         cout << endl;
     }
