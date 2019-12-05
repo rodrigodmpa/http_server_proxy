@@ -35,3 +35,22 @@ std::vector<unsigned char> readBinaryFile(string filename)
 
     return vec;
 }
+
+std::string readTextFile(string path)
+{
+
+    string result;
+    ifstream ifs(path, ios::binary);
+    string str(istreambuf_iterator<char>{ifs}, {});
+
+    return str;
+}
+
+bool writeFile(string path, vector<unsigned char> dados){
+
+    ofstream fout(path, ios::out | ios::binary);
+    fout.write((char*)&dados[0], dados.size() * sizeof(unsigned char));
+    fout.close();
+
+    return true;
+}

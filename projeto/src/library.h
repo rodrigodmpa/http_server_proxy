@@ -35,6 +35,8 @@ std::vector <unsigned char> makeRequest(std::string);
 std::string getHostValue(std::string);
 void freeMemory();
 std::vector<unsigned char> readBinaryFile(std::string);
+std::string readTextFile(std::string);
+bool writeFile(std::string, std::vector<unsigned char>);
 
 
 #endif //HTTP_SERVER_PROXY_LIBRARY_H
