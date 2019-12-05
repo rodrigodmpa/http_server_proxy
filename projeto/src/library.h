@@ -26,6 +26,8 @@
 
 int proxy(int);
 int createNewSocket(uint16_t, uint16_t);
+std::vector <unsigned char> makeRequest(std::string);
+std::string getHostValue(std::string);
 void freeMemory();
 
 
